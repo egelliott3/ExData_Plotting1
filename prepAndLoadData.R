@@ -28,7 +28,7 @@ endingFileRow = grep("3/2/2007", readLines(dataFilename))-1
 dat = read.table(dataFilename, sep=";", header=FALSE,skip=startingFileRow,nrows=endingFileRow - startingFileRow)
 
 ## Set the column names since we skipped over the head
-names(dat) = c("Date","Time","Global_active_power","Global_reactive_power","Voltage","Global_intensity","Sub_metering_1","Sub_metering_2","Sub_metering_3")
+names(dat) = names(read.table(dataFilename, header=TRUE, nrow=1, sep=";"))
 
 ## Normalize column types
 dat$DateTime = strptime(paste0(dat$Date, " ", dat$Time), "%d/%m/%Y %H:%M:%S") 
